@@ -1,2 +1,2 @@
 install:
-  - ./gradlew :coreutils:publishToMavenLocal
+  - ./gradlew build

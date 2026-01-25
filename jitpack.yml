@@ -1,5 +1,5 @@
-# jitpack.yml
-# This tells JitPack to only build and publish the library module (:coreutils)
+jdk:
+  - openjdk17
 
 install:
   - ./gradlew clean :coreutils:build :coreutils:publishToMavenLocal

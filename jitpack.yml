@@ -2,4 +2,4 @@ jdk:
   - openjdk17
 
 install:
-  - ./gradlew clean :coreutils:assembleRelease :coreutils:publish
+  - ./gradlew clean :coreutils:publishReleasePublicationToMavenLocal

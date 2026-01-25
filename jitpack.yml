@@ -1,5 +1,12 @@
 jdk:
   - openjdk17
 
+android:
+  acceptSdkLicenses: true
+
 install:
-  - ./gradlew clean build
+  - chmod +x gradlew
+  - ./gradlew :coreutils:publishReleasePublicationToMavenLocal
+
+build:
+  - ./gradlew :app:assembleRelease

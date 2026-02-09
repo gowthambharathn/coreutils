@@ -67,7 +67,7 @@ afterEvaluate {
                 from(components["release"])
                 groupId = "com.github.gowthambharathn"
                 artifactId = "coreutils"
-                version = "3.3"
+                version = "3.3.1"
             }
         }
     }

@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import infinity.developers.coreutils.utils.AccentBlue
-import infinity.developers.coreutils.utils.SecondaryText
-import infinity.developers.coreutils.utils.WhiteText
-import infinity.developers.coreutils.utils.doggleBlueCard
+import infinity.developers.coreutils.Utils.AccentBlue
+import infinity.developers.coreutils.Utils.SecondaryText
+import infinity.developers.coreutils.Utils.WhiteText
+import infinity.developers.coreutils.Utils.doggleBlueCard
 
 @Composable
 fun QuantumBlueToggle(

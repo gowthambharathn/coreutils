@@ -11,7 +11,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import infinity.developers.coreutils.utils.RedBorderColor
+import infinity.developers.coreutils.Utils.RedBorderColor
 
 @Composable
 fun QuantumRedCard(

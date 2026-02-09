@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import infinity.developers.coreutils.utils.Red
-import infinity.developers.coreutils.utils.SecondaryText
-import infinity.developers.coreutils.utils.WhiteText
-import infinity.developers.coreutils.utils.doggleRedCard
+import infinity.developers.coreutils.Utils.Red
+import infinity.developers.coreutils.Utils.SecondaryText
+import infinity.developers.coreutils.Utils.WhiteText
+import infinity.developers.coreutils.Utils.doggleRedCard
 
 @Composable
 fun QuantumRedToggle(

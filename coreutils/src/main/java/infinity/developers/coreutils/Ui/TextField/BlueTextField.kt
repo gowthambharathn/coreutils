@@ -23,9 +23,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import infinity.developers.coreutils.utils.AccentBlue
-import infinity.developers.coreutils.utils.SecondaryText
-import infinity.developers.coreutils.utils.WhiteText
+import infinity.developers.coreutils.Utils.AccentBlue
+import infinity.developers.coreutils.Utils.SecondaryText
+import infinity.developers.coreutils.Utils.WhiteText
 
 @Composable
 fun <T> QuantumBlueTextField(

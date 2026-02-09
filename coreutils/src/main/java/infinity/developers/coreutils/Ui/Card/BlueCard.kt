@@ -13,7 +13,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import infinity.developers.coreutils.utils.BlueBorderColor
+import infinity.developers.coreutils.Utils.BlueBorderColor
 
 @Composable
 fun QuantumBlueCard(

@@ -21,8 +21,8 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import infinity.developers.coreutils.utils.CircleData
-import infinity.developers.coreutils.utils.Red
+import infinity.developers.coreutils.Utils.CircleData
+import infinity.developers.coreutils.Utils.Red
 import kotlin.random.Random
 
 @Composable

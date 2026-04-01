@@ -1,4 +1,4 @@
-package infinity.developers.coreutils.Ui.Toggle
+package infinity.developers.coreutils.Ui.Quantum.Components.Toggle
 
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import infinity.developers.coreutils.Utils.Red
-import infinity.developers.coreutils.Utils.SecondaryText
-import infinity.developers.coreutils.Utils.WhiteText
-import infinity.developers.coreutils.Utils.doggleRedCard
+import infinity.developers.coreutils.Ui.Utils.Red
+import infinity.developers.coreutils.Ui.Utils.SecondaryText
+import infinity.developers.coreutils.Ui.Utils.WhiteText
+import infinity.developers.coreutils.Ui.Utils.doggleRedCard
 
 @Composable
 fun QuantumRedToggle(

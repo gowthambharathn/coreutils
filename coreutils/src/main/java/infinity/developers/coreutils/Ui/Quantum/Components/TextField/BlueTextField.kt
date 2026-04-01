@@ -1,8 +1,7 @@
-package infinity.developers.coreutils.Ui.TextField
+package infinity.developers.coreutils.Ui.Quantum.Components.TextField
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,11 +14,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -28,12 +23,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import infinity.developers.coreutils.Utils.Red
-import infinity.developers.coreutils.Utils.SecondaryText
-import infinity.developers.coreutils.Utils.WhiteText
+import infinity.developers.coreutils.Ui.Utils.AccentBlue
+import infinity.developers.coreutils.Ui.Utils.SecondaryText
+import infinity.developers.coreutils.Ui.Utils.WhiteText
 
 @Composable
-fun <T> QuantumRedTextField(
+fun <T> QuantumBlueTextField(
     value: T,
     onValueChange: (T) -> Unit,
     valueToString: (T) -> String,
@@ -63,14 +58,14 @@ fun <T> QuantumRedTextField(
                 .background(
                     brush = Brush.horizontalGradient(
                         colors = listOf(
-                            Red.copy(alpha = 0.45f),
-                            Red.copy(alpha = 0.25f)
+                            AccentBlue.copy(alpha = 0.45f),
+                            AccentBlue.copy(alpha = 0.25f)
                         )
                     )
                 )
                 .border(
                     width = 1.dp,
-                    color = Red,
+                    color = AccentBlue,
                     shape = RoundedCornerShape(30.dp)
                 )
         ) {

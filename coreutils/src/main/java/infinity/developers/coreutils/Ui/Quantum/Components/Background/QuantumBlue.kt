@@ -1,5 +1,4 @@
-package infinity.developers.coreutils.Ui.Background
-
+package infinity.developers.coreutils.Ui.Quantum.Components.Background
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -21,20 +20,18 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
-import infinity.developers.coreutils.Utils.CircleData
-import infinity.developers.coreutils.Utils.Red
+import infinity.developers.coreutils.Ui.Utils.AccentBlue
+import infinity.developers.coreutils.Ui.Utils.CircleData
 import kotlin.random.Random
 
 @Composable
-fun QuantumRedBg() {
+fun QuantumBlueBg() {
     val circleData = listOf(
         CircleData(180.dp, (-30).dp, (-30).dp, 0.2f, 0.05f),
         CircleData(180.dp, 250.dp, (-50).dp, 0.15f, 0.03f),
         CircleData(150.dp, (-40).dp, 300.dp, 0.1f, 0.02f),
         CircleData(200.dp, 280.dp, 400.dp, 0.25f, 0.06f),
-        CircleData(160.dp, 100.dp, 650.dp, 0.12f, 0.01f),
-        CircleData(140.dp, 320.dp, 120.dp, 0.18f, 0.04f),
-        CircleData(190.dp, (-120).dp, 520.dp, 0.22f, 0.05f)
+        CircleData(160.dp, 100.dp, 650.dp, 0.12f, 0.01f)
     )
 
     Box(modifier = Modifier
@@ -42,13 +39,14 @@ fun QuantumRedBg() {
         .background(Color.Black)
     ) {
         circleData.forEach { data ->
-            RedMovingCircle(data)
+            BlueMovingCircle(data)
         }
     }
 }
 
+
 @Composable
-fun RedMovingCircle(data: CircleData) {
+fun BlueMovingCircle(data: CircleData) {
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp.dp
     val screenHeight = configuration.screenHeightDp.dp
@@ -86,8 +84,8 @@ fun RedMovingCircle(data: CircleData) {
             .background(
                 brush = Brush.radialGradient(
                     colors = listOf(
-                        Red.copy(alpha = data.alpha1),
-                        Red.copy(alpha = data.alpha2),
+                        AccentBlue.copy(alpha = data.alpha1),
+                        AccentBlue.copy(alpha = data.alpha2),
                         Color.Transparent
                     )
                 ),
@@ -95,4 +93,3 @@ fun RedMovingCircle(data: CircleData) {
             )
     )
 }
-

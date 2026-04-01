@@ -1,4 +1,4 @@
-package infinity.developers.coreutils.Utils
+package infinity.developers.coreutils.Ui.Utils
 
 
 import androidx.compose.foundation.border

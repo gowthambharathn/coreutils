@@ -58,6 +58,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //signinwith google
+    implementation("com.google.android.gms:play-services-auth:21.5.0")
+    implementation("androidx.activity:activity-ktx:1.9.0")
 }
 
 afterEvaluate {

@@ -1,4 +1,4 @@
-package infinity.developers.coreutils.Ui.Button
+package infinity.developers.coreutils.Ui.Quantum.Components.Button
 
 
 import androidx.compose.foundation.background
@@ -18,10 +18,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import infinity.developers.coreutils.Utils.Red
-import infinity.developers.coreutils.Utils.RedBorderColor
-import infinity.developers.coreutils.Utils.SecondaryText
-import infinity.developers.coreutils.Utils.WhiteText
+import infinity.developers.coreutils.Ui.Utils.Red
+import infinity.developers.coreutils.Ui.Utils.RedBorderColor
+import infinity.developers.coreutils.Ui.Utils.SecondaryText
+import infinity.developers.coreutils.Ui.Utils.WhiteText
 
 @Composable
 fun RedButton(

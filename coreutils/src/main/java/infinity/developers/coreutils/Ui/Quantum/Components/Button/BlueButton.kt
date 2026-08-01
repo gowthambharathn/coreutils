@@ -22,7 +22,7 @@ import infinity.developers.coreutils.Ui.Utils.SecondaryText
 import infinity.developers.coreutils.Ui.Utils.WhiteText
 
 @Composable
-fun BlueButton(
+fun QuantumBlueButton(
     text: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,

@@ -1,29 +1,16 @@
 package infinity.developers.engineui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import infinity.developers.coreutils.Ui.Nova.Components.Background.NovaBottomLeftBackground
-import infinity.developers.coreutils.Ui.Nova.Components.Background.NovaTopRightBackground
-import infinity.developers.coreutils.Ui.Nova.Components.Background.NovaWhiteBackground
-import infinity.developers.coreutils.Ui.Nova.Components.Button.NovaBlackButton
-import infinity.developers.coreutils.Ui.Nova.Components.Card.NovaBlackCard
-import infinity.developers.coreutils.Ui.Nova.Components.Doggle.NovaBlackDoggle
-import infinity.developers.coreutils.Ui.Nova.Components.TextField.NovaBlackTextField
 import infinity.developers.engineui.ui.theme.EngineUITheme
+import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
+import infinity.developers.coreutils.Database.Api.SecureDB
+import infinity.developers.coreutils.Database.Storage.TableManager
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,33 +25,26 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun Main(){
-    NovaTopRightBackground()
-    var a = remember { mutableStateOf("") }
+    val context = LocalContext.current
+    SecureDB.init(context)
+    SecureDB.get().open()
 
-    Column(modifier = Modifier
-        .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-
-        NovaBlackDoggle(){}
-        NovaBlackTextField(
-            value = a.value,
-            onValueChange = {a.value = it}
+    val sql = TableManager.createTable(
+        "users",
+        listOf(
+            "id INTEGER PRIMARY KEY AUTOINCREMENT",
+            "name TEXT",
+            "password TEXT"
         )
+    )
 
-        NovaBlackCard(modifier = Modifier
-            .height(100.dp)
-            .width(100.dp)
-        ) {
+    SecureDB.get().exec(sql)
 
-        }
-        NovaBlackButton(
-            onClick = {
+    SecureDB.get().insert(
+        "users",
+        mapOf("name" to "Gowtham", "password" to "1234")
+    )
 
-            },
-            text = "Submit",
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
+    val data = SecureDB.get().query("SELECT * FROM users")
+    Log.d("qwertyuiop", data.toString())
 }

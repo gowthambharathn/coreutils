@@ -26,32 +26,35 @@ import androidx.compose.ui.unit.sp
 fun NovaWhiteTextField(
     value: String,
     onValueChange: (String) -> Unit,
-    hint: String,
+    hint: String? = null,
     modifier: Modifier = Modifier
 ) {
-
     var isFocused by remember { mutableStateOf(false) }
 
     val borderColor by animateColorAsState(
-        if (isFocused) Color(0xFF0D47A1)
-        else Color(0xFF0D47A1).copy(alpha = 0.3f),
+        targetValue = if (isFocused)
+            Color(0xFF2196F3)
+        else
+            Color(0xFF2196F3).copy(alpha = 0.18f),
         label = ""
     )
 
     Box(
         modifier = modifier
             .shadow(
-                elevation = if (isFocused) 12.dp else 6.dp,
-                shape = RoundedCornerShape(30.dp),
-                ambientColor = Color(0xFF0D47A1).copy(alpha = 0.4f)
+                elevation = if (isFocused) 10.dp else 6.dp,
+                shape = RoundedCornerShape(14.dp)
             )
-            .background(Color.White, RoundedCornerShape(30.dp))
+            .background(
+                color = Color.White,
+                shape = RoundedCornerShape(14.dp)
+            )
             .border(
-                width = 2.dp,
+                width = 1.dp,
                 color = borderColor,
-                shape = RoundedCornerShape(30.dp)
+                shape = RoundedCornerShape(14.dp)
             )
-            .padding(horizontal = 20.dp, vertical = 16.dp)
+            .padding(horizontal = 18.dp, vertical = 16.dp)
     ) {
 
         BasicTextField(
@@ -69,10 +72,10 @@ fun NovaWhiteTextField(
                 }
         )
 
-        if (value.isEmpty()) {
+        if (value.isEmpty() && hint != null) {
             Text(
                 text = hint,
-                color = Color.Gray,
+                color = Color(0xFF2196F3),
                 fontSize = 16.sp
             )
         }

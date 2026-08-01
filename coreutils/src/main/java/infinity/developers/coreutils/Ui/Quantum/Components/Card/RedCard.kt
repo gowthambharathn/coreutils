@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -17,8 +18,7 @@ import infinity.developers.coreutils.Ui.Utils.RedBorderColor
 fun QuantumRedCard(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit
-){
-
+) {
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(20.dp),
@@ -27,13 +27,17 @@ fun QuantumRedCard(
     ) {
         Box(
             modifier = Modifier
+                .fillMaxSize()
                 .border(
-                    width = 1.dp,
-                    color = RedBorderColor.copy(alpha = 0.3f),
-                    shape = RoundedCornerShape(20.dp)
+                    1.dp,
+                    RedBorderColor.copy(alpha = 0.3f),
+                    RoundedCornerShape(20.dp)
                 )
-        ){
-            Column(content = content)
+        ) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                content = content
+            )
         }
     }
 }

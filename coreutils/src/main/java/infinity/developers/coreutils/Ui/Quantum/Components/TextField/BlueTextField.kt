@@ -1,5 +1,6 @@
 package infinity.developers.coreutils.Ui.Quantum.Components.TextField
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
@@ -17,6 +18,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -28,88 +31,74 @@ import infinity.developers.coreutils.Ui.Utils.SecondaryText
 import infinity.developers.coreutils.Ui.Utils.WhiteText
 
 @Composable
-fun <T> QuantumBlueTextField(
-    value: T,
-    onValueChange: (T) -> Unit,
-    valueToString: (T) -> String,
-    stringToValue: (String) -> T,
-    modifier: Modifier = Modifier,
-    placeholder: String? = null,
-    enabled: Boolean = true,
-    singleLine: Boolean = true,
-    maxLines: Int = 1,
-    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    leadingIcon: (@Composable (() -> Unit))? = null,
-    trailingIcon: (@Composable (() -> Unit))? = null
+fun QuantumBlueTextField(
+    value: String,
+    onValueChange: (String) -> Unit,
+    hint: String? = null,
+    modifier: Modifier = Modifier
 ) {
-    var text by remember(value) { mutableStateOf(valueToString(value)) }
+    var isFocused by remember { mutableStateOf(false) }
 
-    Card(
-        modifier = modifier.height(52.dp),
-        shape = RoundedCornerShape(30.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.Transparent),
-        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(
-                            AccentBlue.copy(alpha = 0.45f),
-                            AccentBlue.copy(alpha = 0.25f)
-                        )
+    val borderColor by animateColorAsState(
+        targetValue = if (isFocused)
+            Color(0xFF2196F3)
+        else
+            Color(0xFF2196F3).copy(alpha = 0.45f),
+        label = ""
+    )
+
+    val shape = RoundedCornerShape(30.dp)
+
+    Box(
+        modifier = modifier
+            .height(52.dp)
+            .clip(shape)
+            .background(
+                brush = Brush.horizontalGradient(
+                    listOf(
+                        Color(0xFF2196F3).copy(alpha = 0.45f),
+                        Color(0xFF2196F3).copy(alpha = 0.25f)
                     )
                 )
-                .border(
-                    width = 1.dp,
-                    color = AccentBlue,
-                    shape = RoundedCornerShape(30.dp)
-                )
-        ) {
-            BasicTextField(
-                value = text,
-                onValueChange = {
-                    text = it
-                    onValueChange(stringToValue(it))
-                },
-                enabled = enabled,
-                singleLine = singleLine,
-                maxLines = maxLines,
-                keyboardOptions = keyboardOptions,
-                keyboardActions = keyboardActions,
-                visualTransformation = visualTransformation,
-                textStyle = TextStyle(
-                    color = WhiteText,
-                    fontSize = 14.sp
-                ),
-                decorationBox = { innerTextField ->
-                    Row(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(horizontal = 18.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        leadingIcon?.invoke()
-                        Box(
-                            modifier = Modifier.weight(1f),
-                            contentAlignment = Alignment.CenterStart
-                        ) {
-                            if (text.isEmpty() && placeholder != null) {
-                                Text(
-                                    text = placeholder,
-                                    color = SecondaryText,
-                                    fontSize = 14.sp
-                                )
-                            }
-                            innerTextField()
-                        }
-                        trailingIcon?.invoke()
-                    }
-                }
             )
-        }
+            .border(
+                width = 1.dp,
+                color = borderColor,
+                shape = shape
+            )
+            .padding(horizontal = 18.dp)
+    ) {
+
+        BasicTextField(
+            value = value,
+            onValueChange = onValueChange,
+            singleLine = true,
+            textStyle = TextStyle(
+                color = Color.White,
+                fontSize = 14.sp
+            ),
+            modifier = Modifier
+                .fillMaxSize()
+                .onFocusChanged {
+                    isFocused = it.isFocused
+                },
+            decorationBox = { innerTextField ->
+
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    if (value.isEmpty() && hint != null) {
+                        Text(
+                            text = hint,
+                            color = Color.White.copy(alpha = 0.65f),
+                            fontSize = 14.sp
+                        )
+                    }
+
+                    innerTextField()
+                }
+            }
+        )
     }
 }

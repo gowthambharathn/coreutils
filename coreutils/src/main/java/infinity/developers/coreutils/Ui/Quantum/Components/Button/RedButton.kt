@@ -24,7 +24,7 @@ import infinity.developers.coreutils.Ui.Utils.SecondaryText
 import infinity.developers.coreutils.Ui.Utils.WhiteText
 
 @Composable
-fun RedButton(
+fun QuantumRedButton(
     text: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,

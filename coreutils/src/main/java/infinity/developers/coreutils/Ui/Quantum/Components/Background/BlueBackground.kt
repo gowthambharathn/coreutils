@@ -25,7 +25,7 @@ import infinity.developers.coreutils.Ui.Utils.CircleData
 import kotlin.random.Random
 
 @Composable
-fun QuantumBlueBg() {
+fun QuantumBlueBackground() {
     val circleData = listOf(
         CircleData(180.dp, (-30).dp, (-30).dp, 0.2f, 0.05f),
         CircleData(180.dp, 250.dp, (-50).dp, 0.15f, 0.03f),

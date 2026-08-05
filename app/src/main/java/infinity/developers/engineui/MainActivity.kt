@@ -25,26 +25,4 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun Main(){
-    val context = LocalContext.current
-    SecureDB.init(context)
-    SecureDB.get().open()
-
-    val sql = TableManager.createTable(
-        "users",
-        listOf(
-            "id INTEGER PRIMARY KEY AUTOINCREMENT",
-            "name TEXT",
-            "password TEXT"
-        )
-    )
-
-    SecureDB.get().exec(sql)
-
-    SecureDB.get().insert(
-        "users",
-        mapOf("name" to "Gowtham", "password" to "1234")
-    )
-
-    val data = SecureDB.get().query("SELECT * FROM users")
-    Log.d("qwertyuiop", data.toString())
 }

@@ -3,7 +3,11 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.plugin.compose")
     id("maven-publish")
+    id("signing")
 }
+
+group = "io.github.gowthambharathn"
+version = "3.3.1"
 
 android {
     namespace = "infinity.developers.coreutils"
@@ -12,6 +16,7 @@ android {
     defaultConfig {
         minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -19,19 +24,26 @@ android {
         compose = true
     }
 
-    // With Kotlin 2.x + plugin, you don't really need this,
-    // but keeping it safe for AGP compatibility
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.11"
     }
 
     buildTypes {
+
+        debug {
+            isMinifyEnabled = false
+        }
+
         release {
             isMinifyEnabled = false
+            isShrinkResources = false
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
+            consumerProguardFiles("consumer-rules.pro")
         }
     }
 
@@ -43,9 +55,16 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -55,24 +74,63 @@ dependencies {
     implementation("androidx.compose.animation:animation:1.6.1")
     implementation("androidx.compose.ui:ui-tooling-preview:1.6.1")
 
+    implementation("com.google.android.gms:play-services-auth:21.5.0")
+    implementation("androidx.activity:activity-ktx:1.9.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    //signinwith google
-    implementation("com.google.android.gms:play-services-auth:21.5.0")
-    implementation("androidx.activity:activity-ktx:1.9.0")
 }
 
-afterEvaluate {
-    extensions.configure<org.gradle.api.publish.PublishingExtension>("publishing") {
-        publications {
-            create<org.gradle.api.publish.maven.MavenPublication>("release") {
+publishing {
+
+    publications {
+
+        register<MavenPublication>("release") {
+
+            groupId = project.group.toString()
+            artifactId = "coreutils"
+            version = project.version.toString()
+
+            afterEvaluate {
                 from(components["release"])
-                groupId = "com.github.gowthambharathn"
-                artifactId = "coreutils"
-                version = "3.3.1"
+            }
+
+            pom {
+
+                name.set("CoreUtils")
+                description.set("A modern Android utility library for Jetpack Compose.")
+                url.set("https://github.com/gowthambharathn/CoreUtils")
+
+                licenses {
+                    license {
+                        name.set("Apache License 2.0")
+                        url.set("https://www.apache.org/licenses/LICENSE-2.0")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("gowthambharathn")
+                        name.set("Gowtham Bharath")
+                        email.set("barathinfo28@gmail.com")
+                    }
+                }
+
+                scm {
+                    connection.set("scm:git:https://github.com/gowthambharathn/CoreUtils.git")
+                    developerConnection.set("scm:git:ssh://git@github.com/gowthambharathn/CoreUtils.git")
+                    url.set("https://github.com/gowthambharathn/CoreUtils")
+                }
             }
         }
     }
+
+    repositories {
+        mavenLocal()
+    }
+}
+
+signing {
+    sign(publishing.publications)
 }
